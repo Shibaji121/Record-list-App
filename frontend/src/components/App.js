@@ -13,14 +13,20 @@ function App() {
     const instance = axios.create({
       baseURL: "http://localhost:8000", // Replace with your desired domain name
     });
-    instance.post("/create", {
-      User: {
-        name: uname,
-        email: email,
-        password: password,
-        gender: gender,
-      },
-    });
+    instance
+      .post("/create", {
+        User: {
+          name: uname,
+          email: email,
+          password: password,
+          gender: gender,
+        },
+      })
+      .then(function (response) {
+        const id = response.data.data.User._id;
+        console.log(id);
+        localStorage.setItem("userId", id);
+      });
   };
   return (
     <div className="App">
