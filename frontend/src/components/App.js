@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function App() {
   const [uname, setUname] = useState("");
@@ -9,6 +10,17 @@ function App() {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(uname, email, password, gender);
+    const instance = axios.create({
+      baseURL: "http://localhost:8000", // Replace with your desired domain name
+    });
+    instance.post("/create", {
+      User: {
+        name: uname,
+        email: email,
+        password: password,
+        gender: gender,
+      },
+    });
   };
   return (
     <div className="App">
