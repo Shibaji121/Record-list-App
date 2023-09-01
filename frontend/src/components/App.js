@@ -1,15 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
+  const [uname, setUname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [gender, setGender] = useState("Select");
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    console.log(uname, email, password, gender);
+  };
   return (
     <div className="App">
       <div className="profile-screen">
         <div className="profile-header">Register</div>
-        <form className="register">
-          <input type="text" placeholder="User Name" required />
-          <input type="email" placeholder="Email ID" required />
-          <input type="password" placeholder="Password" required />
-          <select name="gender">
+        <form className="register" onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="User Name"
+            value={uname}
+            onChange={(e) => setUname(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email ID"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+          <select
+            name="gender"
+            placeholder="gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option value="Select">Select</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
