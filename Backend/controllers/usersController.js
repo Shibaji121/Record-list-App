@@ -11,3 +11,13 @@ module.exports.createUser = async function (req, res) {
     res.status(500).json(error);
   }
 };
+
+// get user by id
+module.exports.getUserById = async function (req, res) {
+  try {
+    const User = await Users.findById(req.params.id);
+    res.status(200).json({ data: { User: User } });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
