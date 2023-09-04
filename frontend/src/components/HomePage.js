@@ -7,9 +7,10 @@ export default function Homepage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId").toString();
+    const userId = localStorage.getItem("userId");
     if (userId === null) {
       navigate("/");
+      return;
     }
     const instance = axios.create({
       baseURL: "http://localhost:8000",

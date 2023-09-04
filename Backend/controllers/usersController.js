@@ -21,3 +21,15 @@ module.exports.getUserById = async function (req, res) {
     res.status(500).json(error);
   }
 };
+
+//get user by email id
+module.exports.getUserByEmail = async function (req, res) {
+  try {
+    const email = req.query.email;
+    const User = await Users.find({ email: email });
+    res.status(200).json({ data: { User: User } });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};

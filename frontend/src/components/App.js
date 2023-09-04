@@ -11,7 +11,6 @@ function App() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(uname, email, password, gender);
     const instance = axios.create({
       baseURL: "http://localhost:8000", // Replace with your desired domain name
     });
@@ -28,8 +27,8 @@ function App() {
         const id = response.data.data.User._id;
         console.log(id);
         localStorage.setItem("userId", id);
+        navigate("/homepage");
       });
-    navigate("/homepage");
   };
   return (
     <div className="App">
